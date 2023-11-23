@@ -1,0 +1,17 @@
+body
+{
+  background-color:pink;
+  color:blue;
+  font-family:'Comic sans MS'
+}
+h1
+{
+  color:red;
+  text-align:center;
+}
+img
+{
+  text-align:center;
+  height:150px;
+  width:150px
+}
