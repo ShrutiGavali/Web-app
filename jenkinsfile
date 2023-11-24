@@ -1,9 +1,27 @@
-pipeline {
+pipeline{
 agent any
+tools{
+maven 'maven'
+
+}
+
 stages {
-stage('git repo & clean') {
-steps {
-bat "git clone https://github.com/ShrutiGavali/Web-app.git"
-}}
+
+stage('Build Maven'){
+steps{
+
+checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url:
+'https://github.com/Java-Techie-jt/devops-automation.git']])
+bat 'mvn clean install'
 }
 }
+stage('Build docker image'){
+steps{
+script{
+bat 'docker build -t javatechie/devops-integration .'
+}
+}
+}
+stage('Push image to hub'){
+steps{
+scrip
