@@ -31,4 +31,4 @@ bat 'docker push ShrutiGavali/Web-app .'
 }
 }
 }
-}} }
+}} 
