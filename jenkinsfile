@@ -10,8 +10,7 @@ stages {
 stage('Build Maven'){
 steps{
 
-checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url:
-'https://github.com/Java-Techie-jt/devops-automation.git']])
+checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/ShrutiGavali/Web-app.git']])
 bat 'mvn clean install'
 }
 }
@@ -24,4 +23,12 @@ bat 'docker build -t ShrutiGavali/Web-app .'
 }
 stage('Push image to hub'){
 steps{
-scrip
+script{
+withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
+bat 'docker login -u shrutigavali -p ${dockerhubpwd}'
+bat 'docker push ShrutiGavali/Web-app .'
+}
+}
+}
+}
+}} }
